@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "My Extension",
+    "name": "RP assistant",
     "version": "1.0",
-    "description": "This is my extension",
+    "description": "This Extension helps people with retinitis pigmentosa to navigate the web more easily.",
     "icons": {
     },
     "action": {
@@ -14,19 +14,12 @@
         "service_worker": "background.js"
     },
     "commands": {
-        "_execute_action": {
-            "suggested_key": {
-                "default": "Ctrl+B",
-                "mac": "Command+B"
-            },
-            "description": "Execute action"
-        },
-        "contrastFX": {
+        "showOptions": {
             "suggested_key": {
                 "default": "Ctrl+Shift+1",
                 "mac": "Command+Shift+1"
             },
-            "description": "Contrast FX"
+            "description": "Effects Options"
         },
         "cursorFinder": {
             "suggested_key": {
