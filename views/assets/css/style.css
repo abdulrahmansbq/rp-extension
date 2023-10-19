@@ -1,11 +1,71 @@
-body > .scaffold > :is(top-nav, navigation-rail, side-nav, footer),
-main > :not(:last-child),
-main > :last-child > navigation-tree,
-main .toc-container {
-  display: none;
+.rp-action-card {
+  box-sizing: revert !important;
+  width: 220px;
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  top: 0;
+  z-index: 9999999;
+  position: fixed !important;
+  height: 220px;
+  margin: auto;
+  border-radius: 20px;
+  background-color: #3a3a3ad0;
+  box-shadow: 0px 0px 10px 0px #000000;
+  padding: 20px;
+  color: #fff;
+  align-content: space-between;
+  display: flex !important;
+  flex-wrap: wrap !important;
+
+}
+.rp-action-card .firstLineButtons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.rp-action-card .secondLineButtons {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.rp-action-card .lastLineButtons {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  justify-content: space-around;
+}
+.rp-action-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #ffffffbd;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.rp-action-button img {
+  width: 30px;
+  max-width: 30px;
+  height: 30px;
+  max-height: 30px;
+  border: 0px;
+  display: initial !important;
+  filter: none !important;
 }
 
-main > :last-child {
-  margin-top: min(10vmax, 10rem);
-  margin-bottom: min(10vmax, 10rem);
+.rp-action-button:hover {
+  background-color: #ffffff;
+}
+
+.rp-action-button:active {
+  background-color: #ffffff;
+  border: 1px solid #3f3f3f;
 }
