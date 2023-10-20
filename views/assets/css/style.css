@@ -22,8 +22,8 @@
 .rp-action-card .firstLineButtons {
   width: 100%;
   display: flex;
-  justify-content: space-around;
-  gap: 5px;
+  justify-content: center;
+  gap: 20px;
   margin-bottom: 10px;
 }
 .rp-action-card .secondLineButtons {
@@ -36,8 +36,8 @@
 .rp-action-card .lastLineButtons {
   width: 100%;
   display: flex;
-  gap: 5px;
-  justify-content: space-around;
+  gap: 20px;
+  justify-content: center;
 }
 .rp-action-button {
   width: 60px;
