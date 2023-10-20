@@ -154,7 +154,7 @@ function rpScaleInTransform(){
     if(transform == ''){
         rpSetScale(1.25);
         rpSetTransformOrigin(0, 0);
-        window.addEventListener('mousemove', rpTransformOriginController);
+        window.addEventListener('mousemove', rpScrollController);
     }else{
         const scale = transform.split('(')[1].replace(')', '');
         if(scale < 2){
@@ -176,7 +176,7 @@ function rpScaleOutTransform(){
     if(transform == ''){
         rpSetScale(0.75);
         rpSetTransformOrigin(0, 0);
-        window.addEventListener('mousemove', rpTransformOriginController);
+        window.addEventListener('mousemove', rpScrollController);
     }else{
         const scale = transform.split('(')[1].replace(')', '');
         if(scale > 0.5){
@@ -188,27 +188,34 @@ function rpScaleOutTransform(){
 }
 
 /**
- * @name rpTransformOriginController
- * @description controller for the transform origin
+ * @name rpScrollController
+ * @description controller to scroll the page when the mouse is near the edges
  * @param {MouseEvent} event
  * @returns {void}
  */
-function rpTransformOriginController(event){
+function rpScrollController(event){
     if(event.ctrlKey){
-        const transformOrigins = document.body.style.transformOrigin.split(' ');
-        const currentXOrigin = parseInt(transformOrigins[0].replace('px', ''));
-        const currentYOrigin = parseInt(transformOrigins[1].replace('px', ''));
-        if(event.clientX < 300){
-            rpSetTransformOrigin(currentXOrigin - 10, currentYOrigin);
+        let currentScrollX = window.scrollX;
+        let currentScrollY = window.scrollY;
+        if(event.clientX < 300 && currentScrollX > 0){
+            let newXScroll = currentScrollX - 10;
+            newXScroll = newXScroll < 0 ? 0 : newXScroll;
+            window.scrollTo(newXScroll, currentScrollY);
         }
         if(event.clientY < 300){
-            rpSetTransformOrigin(currentXOrigin, currentYOrigin - 10);
+            let newYScroll = currentScrollY - 10;
+            newYScroll = newYScroll < 0 ? 0 : newYScroll;
+            window.scrollTo(currentScrollX, newYScroll);
         }
         if(event.clientX > window.innerWidth - 300){
-            rpSetTransformOrigin(currentXOrigin + 10, currentYOrigin);
+            let newXScroll = currentScrollX + 10;
+            newXScroll = newXScroll > document.body.scrollWidth ? document.body.scrollWidth : newXScroll;
+            window.scrollTo(newXScroll, currentScrollY);
         }
         if(event.clientY > window.innerHeight - 300){
-            rpSetTransformOrigin(currentXOrigin, currentYOrigin + 10);
+            let newYScroll = currentScrollY + 10;
+            newYScroll = newYScroll > document.body.scrollHeight ? document.body.scrollHeight : newYScroll;
+            window.scrollTo(currentScrollX, newYScroll);
         }
     }
 }
