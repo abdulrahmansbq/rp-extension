@@ -21,6 +21,9 @@ chrome.commands.onCommand.addListener(async (command) => {
             files: ["views/assets/js/main.js"],
         });
     }
+    if(command == 'showGrid'){
+        chrome.tabs.create({url: 'views/grid.html'});
+    }
     if (command == 'cursorFinder') {
         chrome.scripting.insertCSS({
             target: { tabId: tab[0].id },
@@ -33,3 +36,21 @@ chrome.commands.onCommand.addListener(async (command) => {
     }
 });
 
+
+// listen to saveTunnelVision message from the content script
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action == 'saveTunnelVision') {
+        // save the data to the local storage
+        chrome.storage.local.get(['tunnelVision']).then((result) => {
+            let tunnelVision = result.tunnelVision;
+            if (tunnelVision == undefined) {
+                tunnelVision = [];
+            }
+            tunnelVision.push(request.data);
+            chrome.storage.local.set({ tunnelVision: tunnelVision }, () => {
+                sendResponse({ success: true });
+            });
+        });
+        return true;
+    }
+});
